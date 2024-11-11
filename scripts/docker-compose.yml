@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+    redis:
+        image: redis:latest
+        ports:
+            - ${LOCAL_REDIS_PORT}:6379
+        volumes:
+            - "../docker/.data/redis:/data"
+        networks:
+            - task
+
+    php:
+        build:
+            context: '../docker/php8-fpm'
+            args:
+                TIMEZONE: ${TIMEZONE}
+        volumes:
+            - ${LARAVEL_APP_PATH}:/var/www/laravel
+            - ../docker/logs/laravel:/var/www/laravel/storage/logs
+            - ../docker/logs/xdebug:/var/www/laravel/docker/xdebug
+            - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}
+        environment:
+            SSH_AUTH_SOCK: ${SSH_AUTH_SOCK}
+            PHP_IDE_CONFIG: serverName=task.test
+        networks:
+            - task
+
+    nginx:
+        build: '../docker/nginx'
+        ports:
+            - ${LOCAL_NGINX_PORT}:80
+        volumes:
+            - ${LARAVEL_APP_PATH}:/var/www/laravel
+            - ../docker/logs/nginx/:/var/log/nginx
+        networks:
+            - task
+
+networks:
+    task:
+        driver: bridge

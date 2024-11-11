@@ -1,0 +1,7 @@
+2024/09/10 16:24:46 [emerg] 1#1: host not found in upstream "php:9000" in /etc/nginx/conf.d/upstream.conf:1
+2024/09/10 17:23:41 [emerg] 1#1: host not found in upstream "php:9000" in /etc/nginx/conf.d/upstream.conf:1
+2024/09/11 04:19:42 [emerg] 1#1: host not found in upstream "php:9000" in /etc/nginx/conf.d/upstream.conf:1
+2024/09/20 04:23:35 [emerg] 1#1: host not found in upstream "php:9000" in /etc/nginx/conf.d/upstream.conf:1
+2024/09/20 04:23:47 [emerg] 1#1: host not found in upstream "php:9000" in /etc/nginx/conf.d/upstream.conf:1
+2024/10/24 14:36:34 [emerg] 1#1: host not found in upstream "php:9000" in /etc/nginx/conf.d/upstream.conf:1
+2024/11/04 09:36:03 [emerg] 1#1: host not found in upstream "php:9000" in /etc/nginx/conf.d/upstream.conf:1
