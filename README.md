@@ -15,7 +15,8 @@ Copy .env.example to .env and edit
 5. `cp .env.dist .env`
 6. build/run containers `./start-dev.sh`
 7. run in backend container `./backend.sh`
-8. `php artisan queue:work`
+8. `composer install`
+9 `php artisan queue:work`
 
 ## Code analyze and fix:
 

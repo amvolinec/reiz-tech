@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
     redis:
         image: redis:latest
@@ -18,10 +16,7 @@ services:
         volumes:
             - ${LARAVEL_APP_PATH}:/var/www/laravel
             - ../docker/logs/laravel:/var/www/laravel/storage/logs
-            - ../docker/logs/xdebug:/var/www/laravel/docker/xdebug
-            - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}
         environment:
-            SSH_AUTH_SOCK: ${SSH_AUTH_SOCK}
             PHP_IDE_CONFIG: serverName=task.test
         networks:
             - task
