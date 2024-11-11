@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ApiToken
 {
     const API_TOKEN = 'api_token';
+
     const UNAUTHORIZED = 'Unauthorized';
 
     public function handle(Request $request, Closure $next): Response

@@ -10,13 +10,14 @@ use Ramsey\Uuid\Uuid;
 class JobController extends Controller
 {
     const MALFORMED_UUID = 'Malformed uuid';
+
     const JOB_NOT_FOUND = 'Job not found';
+
     const JOB_DELETED = 'Job deleted';
 
     public function __construct(
         private readonly JobService $service
-    ) {
-    }
+    ) {}
 
     public function create(JobCreateRequest $request): JsonResponse
     {
@@ -29,13 +30,13 @@ class JobController extends Controller
     {
         $isValidUuid = Uuid::isValid($uuid);
 
-        if (!$isValidUuid) {
+        if (! $isValidUuid) {
             return response()->json(['error' => self::MALFORMED_UUID], 422);
         }
 
         $jobData = $this->service->getJobById($uuid);
 
-        if (!$jobData) {
+        if (! $jobData) {
             return response()->json(['error' => self::JOB_NOT_FOUND], 404);
         }
 
@@ -46,13 +47,13 @@ class JobController extends Controller
     {
         $isValidUuid = Uuid::isValid($uuid);
 
-        if (!$isValidUuid) {
+        if (! $isValidUuid) {
             return response()->json(['error' => self::MALFORMED_UUID], 422);
         }
 
         $jobData = $this->service->getJobById($uuid);
 
-        if (!$jobData) {
+        if (! $jobData) {
             return response()->json(['error' => self::JOB_NOT_FOUND], 404);
         }
 
