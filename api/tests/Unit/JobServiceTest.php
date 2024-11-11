@@ -2,8 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\Http\Requests\JobCreateRequest;
-use App\Jobs\ScrapeJob;
 use App\Services\JobService;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Str;
@@ -24,7 +22,7 @@ class JobServiceTest extends TestCase
 
         Redis::set("job:{$jobId}", json_encode($jobData));
 
-        $jobService = new JobService();
+        $jobService = new JobService;
         $retrievedJob = $jobService->getJobById($jobId);
 
         $this->assertNotNull($retrievedJob);
@@ -33,7 +31,7 @@ class JobServiceTest extends TestCase
 
     public function testGetJobByIdNotFound()
     {
-        $jobService = new JobService();
+        $jobService = new JobService;
         $retrievedJob = $jobService->getJobById('non-existent-id');
 
         $this->assertNull($retrievedJob);
@@ -52,7 +50,7 @@ class JobServiceTest extends TestCase
 
         Redis::set("job:{$jobId}", json_encode($jobData));
 
-        $jobService = new JobService();
+        $jobService = new JobService;
         $jobService->deleteJob($jobId);
 
         $this->assertNull(Redis::get("job:{$jobId}"));
@@ -60,7 +58,7 @@ class JobServiceTest extends TestCase
 
     public function testDeleteJobNotFound()
     {
-        $jobService = new JobService();
+        $jobService = new JobService;
         $jobService->deleteJob('non-existent-id');
 
         $this->assertTrue(true); // Ensure no exception is thrown
