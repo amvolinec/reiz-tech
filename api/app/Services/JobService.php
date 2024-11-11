@@ -29,7 +29,7 @@ class JobService
         return $jobId;
     }
 
-    public function getJobById($id)
+    public function getJobById(string $id)
     {
         return Redis::get("job:{$id}");
     }

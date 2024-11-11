@@ -4,22 +4,19 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class ApiToken
 {
+    const API_TOKEN = 'api_token';
+    const UNAUTHORIZED = 'Unauthorized';
+
     public function handle(Request $request, Closure $next): Response
     {
-        Log::debug('ApiToken middleware: ' . $request->api_token);
-
-        if ($request->api_token != config(key: 'auth.api_token')) {
-            Log::debug('ApiToken middleware: Unauthorized');
-
-            return response()->json('Unauthorized', 401);
+        if ($request->get(self::API_TOKEN) != config(key: 'auth.api_token')) {
+            return response()->json(self::UNAUTHORIZED, 401);
         }
 
-        Log::debug('ApiToken middleware: Authorized');
         return $next($request);
     }
 }
