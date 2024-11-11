@@ -23,6 +23,10 @@ Copy .env.example to .env and edit
     composer lint
     composer lint-fix
 
+## Testing
+    
+    composer test
+
 ## Endpoints:
 
     POST /api/jobs - Accept a JSON request body that includes array of URLs to scrape and HTML/CSS selectors.
